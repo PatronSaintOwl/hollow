@@ -21,6 +21,7 @@ import com.netflix.hollow.ui.EscapingTool;
 import com.netflix.hollow.ui.HollowUISession;
 import java.io.IOException;
 import java.io.Writer;
+import java.net.URL;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.apache.velocity.Template;
@@ -43,12 +44,17 @@ public abstract class HollowExplorerPage {
     public void render(HttpServletRequest req, HttpServletResponse resp, HollowUISession session) throws IOException {
         VelocityContext ctx = new VelocityContext();
 
-        if(ui.getHeaderDisplayString() != null)
+        if (ui.getEnvironmentString() != null)
+           ctx.put("headerDisplayString", ui.getEnvironmentString());
+
+        if (ui.getHeaderDisplayString() != null)
             ctx.put("headerDisplayString", ui.getHeaderDisplayString());
         
-        if(ui.getCurrentStateVersion() != Long.MIN_VALUE)
+        if (ui.getCurrentStateVersion() != Long.MIN_VALUE)
             ctx.put("stateVersion", ui.getCurrentStateVersion());
-        
+
+        ctx.put("Namespace dashboard", new URL(ui.getNamespaceURL()));
+
         ctx.put("basePath", ui.getBaseURLPath());
 
         ctx.put("esc", new EscapingTool());

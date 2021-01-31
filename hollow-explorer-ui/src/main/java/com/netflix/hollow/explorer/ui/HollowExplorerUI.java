@@ -37,6 +37,8 @@ public class HollowExplorerUI extends HollowUIRouter {
     private final HollowReadStateEngine stateEngine;
     
     private String headerDisplayString;
+    private String environmentString;
+    private String namespaceURL;
     
     private final ShowAllTypesPage showAllTypesPage;
     private final BrowseSelectedTypePage browseTypePage;
@@ -112,6 +114,22 @@ public class HollowExplorerUI extends HollowUIRouter {
     
     public String getHeaderDisplayString() {
         return headerDisplayString;
+    }
+
+    public void setEnvironmentString(String str) {
+        this.environmentString = str;
+    }
+
+    public String getEnvironmentString() {
+        return this.environmentString;
+    }
+
+    public void setNamespaceURL(String str) {
+        this.namespaceURL = str;
+    }
+
+    public String getNamespaceURL() {
+        return this.namespaceURL;
     }
     
 }
